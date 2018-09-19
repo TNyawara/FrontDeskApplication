@@ -22,12 +22,17 @@ public class FrontDeskApplication {
         // creating a Jframe
         JFrame myframe=new JFrame("Front Desk Application");
         JPanel mypanel=new JPanel();
-        JLabel namelabel=new JLabel("Name: ");
-        JTextField name=new JTextField();
-        name.setColumns(25);
+        JLabel namelabel=new JLabel("Username: ");
+        JLabel usernamelabel=new JLabel("Password: ");
+        JTextField Username=new JTextField();
+        JTextField password=new JTextField();
+        Username.setColumns(10);
+        password.setColumns(10);
         JButton submit=new JButton("Submit");
         mypanel.add(namelabel);
-        mypanel.add(name);
+        mypanel.add(Username);
+        mypanel.add(usernamelabel);
+        mypanel.add(password);
         mypanel.add(submit);
         myframe.add(mypanel);
         myframe.setSize(900,500);
@@ -36,4 +41,3 @@ public class FrontDeskApplication {
     }
     
 }
-
