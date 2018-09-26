@@ -1,4 +1,4 @@
-# FrontDeskApp
+# FrontDeskApplication
 A simple front desk application that intergrates database
 //Log in and log out(Session Management)
 package front.deskapplication;
