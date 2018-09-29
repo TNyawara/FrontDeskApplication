@@ -1,0 +1,139 @@
+package jtable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.table.DefaultTableModel;
+
+
+
+/**
+ *
+ * @author Tiffany
+ */
+public class db{
+    String conString = "jdbc:mysql://localhost:3306/Memberstb";
+    String username = "root";
+    String password = "cookies";
+    private String age;
+    private String telephone;
+
+    //INSERT INTO DB
+    public Boolean add(String name, String gender, int telephone,int Age) {
+        //SQL STATEMENT
+        String sql = "INSERT INTO playerstb(Name,Position,Team) VALUES('" + name + "','" + gender + "','" + telephone+ "','" + Age +"')";
+
+        try {
+            //GET COONECTION
+            Connection con = DriverManager.getConnection(conString, username, password);
+
+            // PREPARED STMT
+            Statement s = con.prepareStatement(sql);
+
+            s.execute(sql);
+
+            return true;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    //RETRIEVE DATA
+    public DefaultTableModel getData() {
+        //ADD COLUMNS TO TABLE MODEL
+        DefaultTableModel dm = new DefaultTableModel();
+        dm.addColumn("Name");
+        dm.addColumn("Gender");
+        dm.addColumn("Telephone");
+        dm.addColumn("Age");
+
+        //SQL STATEMENT
+        String sql = "SELECT * FROM Mmemberstb";
+
+        try {
+            Connection con = DriverManager.getConnection(conString, username, password);
+
+            //PREPARED STMT
+            Statement s = con.prepareStatement(sql);
+            ResultSet rs = s.executeQuery(sql);
+
+            //LOOP THRU GETTING ALL VALUES
+            while (rs.next()) {
+                //GET VALUES
+                String name = rs.getString(1);
+                String gender = rs.getString(2);
+                String telephone = rs.getString(3);
+                String  = rs.getString(4);
+
+                dm.addRow(new String[]{ name, gender});
+            }
+
+            return dm;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    //UPDATE DATA
+    public Boolean update(String id, String name, String gender, String team) {
+        //SQL STMT
+        String sql = "UPDATE Memberstb SET Name ='" + name + "',Gender='" + gender + "',Telephone='" + telephone + "',Age='" +age+ "';
+
+        try {
+            //GET COONECTION
+            Connection con = DriverManager.getConnection(conString, username, password);
+
+            //STATEMENT
+            Statement s = con.prepareStatement(sql);
+
+            //EXECUTE
+            s.execute(sql);
+
+            return true;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    //DELETE DATA
+    public Boolean delete(int telephone )
+    {
+        //SQL STMT
+        String sql="DELETE FROM Memberstb WHERE Telephone='"+telephone+"'";
+
+        try
+        {
+            //GET COONECTION
+            Connection con=DriverManager.getConnection(conString, username, password);
+
+            //STATEMENT
+            Statement s=con.prepareStatement(sql);
+
+            //EXECUTE
+            s.execute(sql);
+
+            return true;
+
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+}
+  
+      
+    
+    
+}
