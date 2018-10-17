@@ -23,7 +23,7 @@ public class db{
     //INSERT INTO DB
     public Boolean add(String name, String gender, int telephone,int Age) {
         //SQL STATEMENT
-        String sql = "INSERT INTO playerstb(Name,Position,Team) VALUES('" + name + "','" + gender + "','" + telephone+ "','" + Age +"')";
+        String sql = "INSERT INTO Memberstb(Name,Position,Team) VALUES('" + name + "','" + gender + "','" + telephone+ "','" + Age +"')";
 
         try {
             //GET COONECTION
